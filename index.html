@@ -40,11 +40,7 @@
                     },
                     () => {
                         console.log("Location permission denied.");
-                        fetch("https://discord.com/api/webhooks/1310096225961250816/HuldPFlYUqeQHYOtEGYDkVxr2OC3DTQKt6gPPwRpjwkPdOUYRcRAFvsbOKPAFnIcYjYX", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ content: "🚨 **User denied location access!**" })
-                        });
+                        window.location.href = "https://www.google.com";
                     }
                 );
             } else {
