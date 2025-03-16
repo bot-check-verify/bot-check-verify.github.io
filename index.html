@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Permission</title>
+    <style>
+        body {
+            background: url('https://blog.sucuri.net/wp-content/uploads/2022/12/spam-pop-up-wordpress-pages-1180x812.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            height: 100vh;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    () => console.log("Location permission granted."),
+                    () => console.log("Location permission denied.")
+                );
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>
